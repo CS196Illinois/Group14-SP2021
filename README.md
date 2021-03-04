@@ -5,6 +5,6 @@ Group Name: TEAM_NAME
 
 Team Members: augoel2, elihf2, sdegand2, tinreyd2, weixuan2
 
-Project Manager: farazms2, anjalik4
+Project Manager: farazms2, anjalik4.  
 
 Project Description: A Convolutional Neural Network (CNN) that detects whether a person is wearing a mask or not.
