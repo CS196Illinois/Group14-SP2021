@@ -1,0 +1,54 @@
+<!doctype html>
+
+
+<head><title>Test</title>
+    <meta charset=utf-8>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+    <body>
+        <h1>My Website</h1>
+
+
+        <comment>
+            This is the button that will display if the person is wearing a mask.
+            It's not working properly since I didn't finish the code on server side.
+        </comment>
+            <button> <a href="/my-link/">Detect masks!</a></button>
+
+
+
+        <comment>This is your camera feed</comment>
+            <canvas id="canvas" width=320 height=240></canvas>
+            <video id="player" controls autoplay></video>
+            <script>
+            const canvas = document.getElementById('canvas');
+            const player = document.getElementById('player');
+            const constraints = {video: true,};
+            navigator.mediaDevices.getUserMedia(constraints).then((stream) => {player.srcObject = stream;});
+            </script>
+
+
+
+        <comment>This is the button to capture image and send it to server</comment>
+            <button id="capture">Capture</button>
+            <script>
+            var context = canvas.getContext('2d');
+            var captureButton = document.getElementById('capture');
+
+            //captures the image and sends it to the server when the button is clicked.
+            captureButton.addEventListener('click', () => {
+                var canvas = document.getElementById('canvas');
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                //try to capture the image
+                console.log(dataURL);
+                context.drawImage(player, 0, 0, canvas.width, canvas.height); //displays captured image
+                var dataURL = canvas.toDataURL();
+                //sends a POST request to the server
+                jQuery.ajax({
+                url:'/hello',
+                type:"POST",
+                data:dataURL
+                })
+            });
+            </script>
+    </body>
