@@ -1,0 +1,23 @@
+﻿body {
+    background-color: #f8f4f9;
+    color: #77bfa3;
+    font-family: 'Berlin Sans FB';
+}
+
+.person {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+img {
+    width: 10rem;
+    display: flex;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    color: #416675;
+}
