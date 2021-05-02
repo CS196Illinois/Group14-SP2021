@@ -1,0 +1,10 @@
+body {
+    background-color: #f8f4f9;
+    color: #77bfa3;
+    font-family: 'Berlin Sans FB';
+}
+.preview {
+    position: absolute;
+    left: 1000px;
+    top: 200px;
+}
