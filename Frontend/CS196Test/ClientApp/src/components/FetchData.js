@@ -35,7 +35,7 @@ export class FetchData extends Component {
   render() {
     return (
     <div>
-        <h1>fetch data</h1>
+        <h1>Webcam Mask Detection</h1>
         <div class = 'videoPlayer'>
             <video id="player" controls autoPlay></video>
         </div>
