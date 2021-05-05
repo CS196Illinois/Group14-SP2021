@@ -4,10 +4,10 @@ from io import BytesIO
 from flask_cors import CORS
 from flask import Flask, render_template, jsonify, request
 import tensorflow as tf
-import cv2
 import numpy as np
 from PIL import Image
 from binascii import a2b_base64
+import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 CORS(app)
@@ -42,17 +42,20 @@ def capture():
         decoded_img = base64.decodebytes(bytes(another, 'utf-8') + b'===')
         # create an Image instance based on decoded image
         i = Image.open(BytesIO(decoded_img))
+        i.convert("RGB").save("123.jpg")
         # load captured image into CNN model
-        model_dir = r'E:\a CS196 group project\neural network\CNN saved models\model 1'
-        temp = Image.fromarray(np.asarray(i), 'RGB')
-        resized_img = temp.resize((1024, 1024))
+        model_dir = r'D:\CS196 group project\128x128'
+        resized_img = i.resize((128, 128)).convert("RGB")
+        resized_img.convert("RGB").save("test.jpg")
         img_input = np.asarray(resized_img)
         # loads trained model and predict the captured image.
         model = tf.keras.models.load_model(model_dir)
-        result = model.predict_classes(np.asarray([img_input]))
-        classes = ['correctly', 'incorrectly']
+        result = model.predict(np.asarray([img_input]))
         print(result)
-        return classes[result[0]], 200
+        if result[0][0] > result[0][1]:
+            return "You are wearing a mask correctly", 200
+        else:
+            return "You are wearing a mask incorrectly", 200
     else:
         return 'Bad Request', 405
 
